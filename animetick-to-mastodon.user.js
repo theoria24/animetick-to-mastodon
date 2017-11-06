@@ -21,7 +21,7 @@ var INSTANCE = "mstdn.jp";
   });
 
   $('.ticket_watch').on('click', function() {
-    if ($(this).not('.enable')) {
+    if ($(this).not('.enable').length) {
       var cia = $(this).attr('id').split('_');
       var cid = "#mastodon_" + cia[2] + "_" + cia[3] + ":checked";
       var title = $("#anime_" + cia[2] + "_" + cia[3] + " > .title > .title").text();
