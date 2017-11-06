@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Animetick to Mastodon
-// @namespace    https://theoria24.github.io/
-// @version      0.1
+// @namespace    https://github.com/theoria24/animetick-to-mastodon
+// @version      0.1.1
 // @description  視聴したアニメをAnimetickからMastodonに投稿
 // @author       theoria
 // @match        http://animetick.net/
@@ -18,8 +18,8 @@ function mastodon_checkbox_html(anime_id, episode_num) {
 }
 
 // 投稿画面URL
-function mastodon_share_url(anime_id, episode_num, title, subtitle) {
-  return "https://" + INSTANCE + "/share?text=" + encodeURIComponent(title + " ＃" + episode_num + "「" + subtitle + "」を見ました http://animetick.net/ticket/" + anime_id + "/" + episode_num);
+function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
+  return "https://" + INSTANCE + "/share?text=" + encodeURIComponent(title + " ＃" + episode_num + "「" + subtitle + "」を見ました http://animetick.net/ticket/" + anime_id + "/" + episode_num + " " + hashtag);
 }
 
 (function() {
@@ -50,8 +50,10 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle) {
       var cid = "#mastodon_" + cia[2] + "_" + cia[3] + ":checked";
       var title = $("#anime_" + cia[2] + "_" + cia[3] + " > .title > .title").text();
       var subtitle = $("#anime_" + cia[2] + "_" + cia[3]).next().children("a").children(".sub_title").text();
+      // 取得方法がわからないのでひとまず…
+      var hashtag = "";
       if ($(cid).val()) {
-        window.open(mastodon_share_url(cia[2], cia[3], title, subtitle));
+        window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
       }
     }
   });
@@ -62,9 +64,10 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle) {
       var cia = $(this).attr('id').split('_');
       var cid = "#mastodon_" + cia[2] + "_" + cia[3] + ":checked";
       var title = $("h2").text();
+      var hashtag = $.trim($(".hashtag").text()) || "";
       var subtitle = $(this).siblings(".sub_title").children("a").text().replace(/^#[0-9]+\s/, '');
       if ($(cid).val()) {
-        window.open(mastodon_share_url(cia[2], cia[3], title, subtitle));
+        window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
       }
     }
   });
