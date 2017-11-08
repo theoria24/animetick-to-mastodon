@@ -6,6 +6,7 @@
 // @author       theoria
 // @match        http://animetick.net/
 // @match        http://animetick.net/anime/*
+// @match        http://animetick.net/ticket/*
 // @license      The Unlicense
 // @grant        none
 // ==/UserScript==
@@ -25,7 +26,7 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
 (function() {
   'use strict';
 
-  // トップページの埋め込み
+  // トップページ、ticketページの埋め込み
   $(".detail > .button_block").each(function(i, elem) {
     if ($(elem).parent().children(".ticket_title").length) {
       var id = $(elem).parent().children(".ticket_title").attr('id');
@@ -43,7 +44,7 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
     }
   });
 
-  // トップページのWatchアクション
+  // トップページ、ticketページのWatchアクション
   $('.ticket_watch').on('click', function() {
     if ($(this).not('.enable').length) {
       var cia = $(this).attr('id').split('_');
@@ -72,7 +73,7 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
     }
   });
 
-  // トップのリスト追加表示への埋め込み
+  // リスト追加表示への埋め込み
   (new MutationObserver(function (MutationRecords, MutationObserver) {
     $('.detail > .twitter').each(function(i, elem) {
       if ($(elem).parent().children('.twitter').length==1) {
