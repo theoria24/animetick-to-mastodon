@@ -71,4 +71,17 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
       }
     }
   });
+
+  // トップのリスト追加表示への埋め込み
+  (new MutationObserver(function (MutationRecords, MutationObserver) {
+    $('.detail > .twitter').each(function(i, elem) {
+      if ($(elem).parent().children('.twitter').length==1) {
+        var id = $(elem).children(".twitter").attr('id');
+        var ary = id.split('_');
+        $(elem).parent().append(mastodon_checkbox_html(ary[1], ary[2]));
+      }
+    });
+  })).observe($('#ticket_list').get(0), {
+    childList: true,
+  });;
 })();
