@@ -9,6 +9,3 @@
 1. Tampermonkeyなどのダッシュボードから```animetick-to-mastodon.user.js```を開き、インスタンス名を編集（デフォルトではmstdn.jpになっているのでjpの方は編集不要）。
 1. [Animetick](http://animetick.net/)で視聴したアニメのWatchボタンを押す。
 1. （おそらく）Mastodonの投稿画面が立ち上がる。
-
-## 現時点で判明している問題
-- トップページやticketページでWatchすると投稿にハッシュタグが追加されない（たすけて）

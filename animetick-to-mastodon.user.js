@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Animetick to Mastodon
 // @namespace    https://github.com/theoria24/animetick-to-mastodon
-// @version      1.0.0
+// @version      1.1.0
 // @description  視聴したアニメをAnimetickからMastodonに投稿
 // @author       theoria
 // @match        http://animetick.net/
@@ -51,10 +51,12 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
       var cid = "#mastodon_" + cia[2] + "_" + cia[3] + ":checked";
       var title = $("#anime_" + cia[2] + "_" + cia[3] + " > .title > .title").text();
       var subtitle = $("#anime_" + cia[2] + "_" + cia[3]).next().children("a").children(".sub_title").text();
-      // 取得方法がわからないのでひとまず…
-      var hashtag = "";
       if ($(cid).val()) {
-        window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
+        var url = "http://animetick.net/anime/" + cia[2];
+        $.get(url, function(data){
+          var hashtag = $.trim($(data).find(".hashtag").text());
+          window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
+        });
       }
     }
   });
@@ -65,7 +67,7 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
       var cia = $(this).attr('id').split('_');
       var cid = "#mastodon_" + cia[2] + "_" + cia[3] + ":checked";
       var title = $("h2").text();
-      var hashtag = $.trim($(".hashtag").text()) || "";
+      var hashtag = $.trim($(".hashtag").text());
       var subtitle = $(this).siblings(".sub_title").children("a").text().replace(/^#[0-9]+\s/, '');
       if ($(cid).val()) {
         window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
