@@ -11,8 +11,6 @@
 // @grant        none
 // ==/UserScript==
 
-var INSTANCE = "mstdn.jp";
-
 // チェックボックスHTML
 function mastodon_checkbox_html(anime_id, episode_num) {
   return '<div class="twitter"><input id="mastodon_' + anime_id + '_' + episode_num + '" class="twitter mastodon" type="checkbox" value="mastodon" title="Mastodon に投稿" checked><label for="mastodon_' + anime_id + '_' + episode_num + '" title="Mastodon に投稿"><img class="twitter_icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACI0lEQVR4AWJwL/CB49BVq5gN2gGtlAOMHUEYxzcN60a17e75LmlQ27ZtBbUXtW0GRVDb1pvZ2rat6fef3k1mz9rkn/fx98Ze9Uo2m2DafHMli+03LXaB7DsQbMSQQw1q0aMzlGFO4WWjG0UKdQe9PmDI5Kt5TIu/QEFqVMnmL4Oca3kVkKayWC+oueCGsPc9FYuOvRBtV99RcdiIIYcavQcMsKLXjb2JSTRdfku8//pbxHx//goxYvtDCLb6UNNk2S0NyN+BZYS4rJj+T3uuvZcN915/FytOvZK/b7/8krobE3vzXdbsvvreN8qgqby4QfMP14MP3v6QxV033JV+ixW31aiar/g/om4b7kn//psfPmDFqV6EETQ1EKUH39BI8DVcclP64dM9BYSNGHL4UBtrc8KNYPtqZGLAsGkKCDtxoMvNdAUGTfMKGUFuoGJiwCBS/cU3IdgJAy32N2Tc+UxGBftK/sSAPiUCpKv4VJ5DUPXiOgtvyNGEul5CQORQg1p9Q2arm0IX/hWCqRX17yw7jmfRrh7fHafQYt8Th/DfpHNktzXGiQy+xyHI4gNiN2BtKzhXSgU5XjWCd6TmnlJ2oGVFm1cOsc9nlxBdasqzLuXAXfRDWR/kUiplBDmsQ5wpW9ypaPGqpuOVqGAFiuKIYYS4XUkCIZpSZ9r+D0m/f2xUokBd2C2MluBzaIQHqfkWXmXyr9DvVvIHl58SyJUQ8B8GJq8u1oDD9gAAAABJRU5ErkJggg=="></label></div>';
@@ -20,7 +18,7 @@ function mastodon_checkbox_html(anime_id, episode_num) {
 
 // 投稿画面URL
 function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
-  return "https://" + INSTANCE + "/share?text=" + encodeURIComponent(title + " ＃" + episode_num + "「" + subtitle + "」を見ました http://animetick.net/ticket/" + anime_id + "/" + episode_num + " " + hashtag);
+  return "web+mastodon://share?text=" + encodeURIComponent(title + " ＃" + episode_num + "「" + subtitle + "」を見ました http://animetick.net/ticket/" + anime_id + "/" + episode_num + " " + hashtag);
 }
 
 (function() {
