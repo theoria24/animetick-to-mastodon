@@ -6,6 +6,9 @@
 前提: Tampermonkeyなど
 
 1. [ここからインストール](https://github.com/theoria24/animetick-to-mastodon/raw/master/animetick-to-mastodon.user.js)
-1. Tampermonkeyなどのダッシュボードから```animetick-to-mastodon.user.js```を開き、インスタンス名を編集（デフォルトではmstdn.jpになっているのでjpの方は編集不要）。
+1. Tampermonkeyなどのダッシュボードから`animetick-to-mastodon.user.js`を開き、インスタンス名を編集（デフォルトではmstdn.jpになっているのでjpの方は編集不要）。
 1. [Animetick](http://animetick.net/)で視聴したアニメのWatchボタンを押す。
 1. （おそらく）Mastodonの投稿画面が立ち上がる。
+
+## その他
+`web+mastodon://share?text=`が使える方は[こちら](https://github.com/theoria24/animetick-to-mastodon/raw/protocol-handler-test/animetick-to-mastodon.user.js)を使うとインスタンス名の編集が不要です。[#5](https://github.com/theoria24/animetick-to-mastodon/pull/5)

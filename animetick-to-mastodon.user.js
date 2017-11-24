@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Animetick to Mastodon
 // @namespace    https://github.com/theoria24/animetick-to-mastodon
-// @version      1.1.0
+// @version      1.1.1
 // @description  視聴したアニメをAnimetickからMastodonに投稿
 // @author       theoria
 // @match        http://animetick.net/
