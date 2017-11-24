@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Animetick to Mastodon
 // @namespace    https://github.com/theoria24/animetick-to-mastodon
-// @version      1.1.0
+// @version      1.1.1
 // @description  視聴したアニメをAnimetickからMastodonに投稿
 // @author       theoria
 // @match        http://animetick.net/
@@ -51,9 +51,10 @@ function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
       var subtitle = $("#anime_" + cia[2] + "_" + cia[3]).next().children("a").children(".sub_title").text();
       if ($(cid).val()) {
         var url = "http://animetick.net/anime/" + cia[2];
-        $.get(url, function(data){
-          var hashtag = $.trim($(data).find(".hashtag").text());
-          window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
+        $.ajax(url, {async: false, success: function(data){
+            var hashtag = $.trim($(data).find(".hashtag").text());
+            window.open(mastodon_share_url(cia[2], cia[3], title, subtitle, hashtag));
+          }
         });
       }
     }
