@@ -20,7 +20,8 @@ function mastodon_checkbox_html(anime_id, episode_num) {
 
 // 投稿画面URL
 function mastodon_share_url(anime_id, episode_num, title, subtitle, hashtag) {
-  return "https://" + INSTANCE + "/share?text=" + encodeURIComponent(title + " ＃" + episode_num + "「" + subtitle + "」を見ました http://animetick.net/ticket/" + anime_id + "/" + episode_num + " " + hashtag);
+  if(subtitle) subtitle = "「" + subtitle + "」";
+  return "https://" + INSTANCE + "/share?text=" + encodeURIComponent(title + " ＃" + episode_num + " " + subtitle + "を見ました http://animetick.net/ticket/" + anime_id + "/" + episode_num + " " + hashtag);
 }
 
 (function() {
